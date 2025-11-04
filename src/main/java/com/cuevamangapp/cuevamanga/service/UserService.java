@@ -19,23 +19,10 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    //metodo que lista todos los usuarios de la dataBase
-    public ResponseEntity<List<UserDTO>> userAsList(){
 
-        List<UserDTO> userDTOList = new ArrayList<>();
+    public ResponseEntity<Boolean> validateUser(String email, String password){
 
-     userRepository.findAll().forEach(e->{
-
-            UserDTO userDTO = new UserDTO();
-
-            userDTO.setName(e.getName());
-            userDTO.setEmail(e.getEmail());
-
-            userDTOList.add(userDTO);
-        });
-
-        return new ResponseEntity<>(userDTOList,HttpStatus.OK);
-
+        return new ResponseEntity<>(userRepository.findByEmailAndPassword(email,password),HttpStatus.OK);
     }
 
     //metodo que crea usuarios en dataBase

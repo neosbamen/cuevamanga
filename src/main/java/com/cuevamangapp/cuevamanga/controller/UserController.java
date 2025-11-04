@@ -17,10 +17,15 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping
-    public ResponseEntity<List<UserDTO>> userAsList(){
-        return userService.userAsList();
+
+
+    //Paso los atributos por pathParam, pero podria ser por requestBody o pathVariable. Revisar que conviene mas.
+    @GetMapping("/validate{email}&{password}")
+    public ResponseEntity<Boolean> validateUserC(@PathParam("email")String email,@PathParam("password") String password){
+
+        return userService.validateUser(email,password);
     }
+
 
     @PostMapping("/create")
     public ResponseEntity<String> createUserC(@RequestBody User user){

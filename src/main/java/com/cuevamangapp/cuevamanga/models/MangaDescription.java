@@ -4,16 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Manga {
 
+public class MangaDescription {
 
-    private String id;
-    private MangaAttributes attributes;
-    private List<Relations> relationships;
-
+    private String en;
 }
