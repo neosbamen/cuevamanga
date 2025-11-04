@@ -9,11 +9,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Manga {
+public class MangaAttributes {
 
-
-    private String id;
-    private MangaAttributes attributes;
-    private List<Relations> relationships;
-
+    private MangaTitle title;
+    private MangaDescription description;
+    private String[] availableTranslatedLanguages;
 }
