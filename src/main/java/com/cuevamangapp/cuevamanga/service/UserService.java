@@ -22,7 +22,9 @@ public class UserService {
 
     public ResponseEntity<Boolean> validateUser(String email, String password){
 
-        return new ResponseEntity<>(userRepository.findByEmailAndPassword(email,password),HttpStatus.OK);
+
+        boolean exist = userRepository.existsByEmailAndPassword(email,password);
+        return new ResponseEntity<>(exist,HttpStatus.FOUND);
     }
 
     //metodo que crea usuarios en dataBase

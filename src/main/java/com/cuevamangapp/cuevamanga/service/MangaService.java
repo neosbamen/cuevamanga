@@ -46,19 +46,19 @@ public class MangaService {
     }
     public MangaResponse mangaTagHorror(){
 
-        Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(fantasyUrl).retrieve().bodyToMono(MangaResponse.class);
+        Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(horrorUrl).retrieve().bodyToMono(MangaResponse.class);
         return mangaResponseMono.block();
 
     }
     public MangaResponse mangaTagRomance(){
 
-        Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(fantasyUrl).retrieve().bodyToMono(MangaResponse.class);
+        Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(romanceUrl).retrieve().bodyToMono(MangaResponse.class);
         return mangaResponseMono.block();
 
     }
     public MangaResponse mangaTagComedy(){
 
-        Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(fantasyUrl).retrieve().bodyToMono(MangaResponse.class);
+        Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(comedyUrl).retrieve().bodyToMono(MangaResponse.class);
         return mangaResponseMono.block();
 
     }

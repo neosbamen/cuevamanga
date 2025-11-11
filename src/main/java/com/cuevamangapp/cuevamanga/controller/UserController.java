@@ -20,8 +20,8 @@ public class UserController {
 
 
     //Paso los atributos por pathParam, pero podria ser por requestBody o pathVariable. Revisar que conviene mas.
-    @GetMapping("/validate{email}&{password}")
-    public ResponseEntity<Boolean> validateUserC(@PathParam("email")String email,@PathParam("password") String password){
+    @GetMapping("/validate")
+    public ResponseEntity<Boolean> validateUserC(@RequestParam String email,@RequestParam String password){
 
         return userService.validateUser(email,password);
     }
@@ -39,8 +39,8 @@ public class UserController {
         return userService.updateUser(id,user);
     }
 
-    @DeleteMapping("/delete{id}")
-    public ResponseEntity<String> deleteUserC(@PathParam("id") Long id){
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteUserC(@RequestParam Long id){
 
         return userService.deleteUser(id);
     }
