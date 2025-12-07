@@ -7,13 +7,9 @@ import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
-@CrossOrigin(value = "http://localhost:5173")
 public class UserController {
 
     private final UserService userService;
@@ -21,10 +17,10 @@ public class UserController {
 
 
     //Paso los atributos por pathParam, pero podria ser por requestBody o pathVariable. Revisar que conviene mas.
-    @GetMapping("/validate")
-    public ResponseEntity<Boolean> validateUserC(@RequestParam String email,@RequestParam String password){
+    @PostMapping("/validate")
+    public ResponseEntity<Boolean> validateUserC(@RequestBody User user){
 
-        return userService.validateUser(email,password);
+        return userService.validateUser(user.getEmail(), user.getPassword());
     }
 
 
