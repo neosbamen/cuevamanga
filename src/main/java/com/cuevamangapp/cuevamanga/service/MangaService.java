@@ -11,8 +11,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +27,12 @@ public class MangaService {
     private String romanceUrl;
     @Value("${baseurl.cuevamanga.comedy.tag}")
     private String comedyUrl;
+    @Value("${baseurl.cuevamanga.manga-by-name}")
+    private String mangaByName;
+    @Value("${baseurl.cuevamanga.manga-chapter-by-manga-id}")
+    private String chapterByMangaId;
+    @Value("${baseurl.cuevamanga.manga-page-by-chapter-id}")
+    private String pageByChapterId;
 
     private final WebClient mangaClient;
 
@@ -60,6 +64,22 @@ public class MangaService {
 
         Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(comedyUrl).retrieve().bodyToMono(MangaResponse.class);
         return mangaResponseMono.block();
+
+    }
+    public MangaResponse mangaByName(String name){
+
+        Mono<MangaResponse> mangaResponseMono= mangaClient.get().uri(mangaByName.concat(name).concat("&limit=10&offset=0").concat("&includes[]=cover_art")).retrieve().bodyToMono(MangaResponse.class);
+
+        return mangaResponseMono.block();
+    }
+    public ChapterResponse userMangaOption(String mangaId){
+
+        return mangaClient.get().uri(chapterByMangaId.concat(mangaId)).retrieve().bodyToMono(ChapterResponse.class).block();
+    }
+    public Page pagesUrls (String chapterId){
+
+        return mangaClient.get().uri(pageByChapterId.concat(chapterId)).retrieve().bodyToMono(Page.class).block();
+
 
     }
 }

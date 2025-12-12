@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Chapter {
-    private String chapterId, title, numChapter, externalUrl, availibleLanguage;
+    private String id;
+    private ChapterAttributes attributes;
 }

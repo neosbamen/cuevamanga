@@ -1,12 +1,12 @@
 package com.cuevamangapp.cuevamanga.controller;
 
+import com.cuevamangapp.cuevamanga.models.ChapterResponse;
+import com.cuevamangapp.cuevamanga.models.Manga;
 import com.cuevamangapp.cuevamanga.models.MangaResponse;
+import com.cuevamangapp.cuevamanga.models.Page;
 import com.cuevamangapp.cuevamanga.service.MangaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -44,6 +44,24 @@ public class MangaController {
     public MangaResponse mangaTagComedy(){
 
         return mangaService.mangaTagComedy();
+    }
+
+    @GetMapping("/by-name={part}")
+    public MangaResponse mangaByName(@PathVariable String part){
+
+        return mangaService.mangaByName(part);
+    }
+
+    @GetMapping("/chapters")
+    public ChapterResponse chapterByManga(@RequestParam String mangaId){
+
+        return mangaService.userMangaOption(mangaId);
+    }
+
+    @GetMapping("/pages")
+    public Page allPagesByChapterId(@RequestParam String chapterId){
+
+        return mangaService.pagesUrls(chapterId);
     }
 
 }
