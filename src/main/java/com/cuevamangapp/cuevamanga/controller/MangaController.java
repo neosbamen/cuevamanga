@@ -1,12 +1,11 @@
 package com.cuevamangapp.cuevamanga.controller;
 
-import com.cuevamangapp.cuevamanga.models.ChapterResponse;
-import com.cuevamangapp.cuevamanga.models.Manga;
-import com.cuevamangapp.cuevamanga.models.MangaResponse;
-import com.cuevamangapp.cuevamanga.models.Page;
+import com.cuevamangapp.cuevamanga.models.*;
 import com.cuevamangapp.cuevamanga.service.MangaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -17,7 +16,7 @@ public class MangaController {
     public final MangaService mangaService;
 
     @GetMapping("/fantasy")
-    public MangaResponse mangaTagFantasy(){
+    public List<MangaDTO> mangaTagFantasy(){
 
         return mangaService.mangaTagFantasy();
     }

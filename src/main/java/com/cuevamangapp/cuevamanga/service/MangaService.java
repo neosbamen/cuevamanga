@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -35,11 +36,13 @@ public class MangaService {
     private String pageByChapterId;
 
     private final WebClient mangaClient;
+    private final MapperManga mapper;
 
-    public MangaResponse mangaTagFantasy(){
+    public List<MangaDTO> mangaTagFantasy(){
 
         Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(fantasyUrl).retrieve().bodyToMono(MangaResponse.class);
-        return mangaResponseMono.block();
+
+        return mapper.mangaDTOMap(Objects.requireNonNull(mangaResponseMono.block()));
 
        }
 
