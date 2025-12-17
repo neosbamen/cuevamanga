@@ -36,53 +36,55 @@ public class MangaService {
     private String pageByChapterId;
 
     private final WebClient mangaClient;
-    private final MapperManga mapper;
+    private final MapperManga mangaMapper;
+    private final PageMapper pageMapper;
 
     public List<MangaDTO> mangaTagFantasy(){
 
         Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(fantasyUrl).retrieve().bodyToMono(MangaResponse.class);
 
-        return mapper.mangaDTOMap(Objects.requireNonNull(mangaResponseMono.block()));
+        return mangaMapper.toDTO(Objects.requireNonNull(mangaResponseMono.block()));
 
        }
-
-    public MangaResponse mangaTagAction(){
+    public List<MangaDTO> mangaTagAction(){
         Mono<MangaResponse> mangaResponseMono= mangaClient.get().uri(actionUrl).retrieve().bodyToMono(MangaResponse.class);
 
-        return mangaResponseMono.block();
+        return mangaMapper.toDTO(Objects.requireNonNull(mangaResponseMono.block()));
     }
-    public MangaResponse mangaTagHorror(){
+    public List<MangaDTO> mangaTagHorror(){
 
         Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(horrorUrl).retrieve().bodyToMono(MangaResponse.class);
-        return mangaResponseMono.block();
+        return mangaMapper.toDTO(Objects.requireNonNull(mangaResponseMono.block()));
 
     }
-    public MangaResponse mangaTagRomance(){
+    public List<MangaDTO> mangaTagRomance(){
 
         Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(romanceUrl).retrieve().bodyToMono(MangaResponse.class);
-        return mangaResponseMono.block();
+        return mangaMapper.toDTO(Objects.requireNonNull(mangaResponseMono.block()));
 
     }
-    public MangaResponse mangaTagComedy(){
+    public List<MangaDTO> mangaTagComedy(){
 
         Mono<MangaResponse> mangaResponseMono = mangaClient.get().uri(comedyUrl).retrieve().bodyToMono(MangaResponse.class);
-        return mangaResponseMono.block();
+        return mangaMapper.toDTO(Objects.requireNonNull(mangaResponseMono.block()));
 
     }
-    public MangaResponse mangaByName(String name){
+    public List<MangaDTO> mangaByName(String name){
 
         Mono<MangaResponse> mangaResponseMono= mangaClient.get().uri(mangaByName.concat(name).concat("&limit=10&offset=0").concat("&includes[]=cover_art")).retrieve().bodyToMono(MangaResponse.class);
 
-        return mangaResponseMono.block();
+        return  mangaMapper.toDTO(Objects.requireNonNull(mangaResponseMono.block()));
     }
-    public ChapterResponse userMangaOption(String mangaId){
+    public ChapterResponse chaptersByMangaOption(String mangaId){
 
         return mangaClient.get().uri(chapterByMangaId.concat(mangaId)).retrieve().bodyToMono(ChapterResponse.class).block();
     }
-    public Page pagesUrls (String chapterId){
+    public List<String> pagesUrls (String chapterId){
 
-        return mangaClient.get().uri(pageByChapterId.concat(chapterId)).retrieve().bodyToMono(Page.class).block();
+        Pages allPages = mangaClient.get().uri(pageByChapterId.concat(chapterId)).retrieve().bodyToMono(Pages.class).block();
 
+        assert allPages != null;
+        return pageMapper.toDTO(allPages);
 
     }
 }

@@ -22,31 +22,31 @@ public class MangaController {
     }
 
     @GetMapping("/action")
-    public MangaResponse mangaTagAction(){
+    public List<MangaDTO> mangaTagAction(){
 
         return mangaService.mangaTagAction();
     }
 
     @GetMapping("/horror")
-    public MangaResponse mangaTagHorror(){
+    public List<MangaDTO> mangaTagHorror(){
 
         return mangaService.mangaTagHorror();
     }
 
     @GetMapping("/romance")
-    public MangaResponse mangaTagRomance(){
+    public List<MangaDTO> mangaTagRomance(){
 
         return mangaService.mangaTagRomance();
     }
 
     @GetMapping("/comedy")
-    public MangaResponse mangaTagComedy(){
+    public List<MangaDTO> mangaTagComedy(){
 
         return mangaService.mangaTagComedy();
     }
 
     @GetMapping("/by-name={part}")
-    public MangaResponse mangaByName(@PathVariable String part){
+    public List<MangaDTO> mangaByName(@PathVariable String part){
 
         return mangaService.mangaByName(part);
     }
@@ -54,11 +54,11 @@ public class MangaController {
     @GetMapping("/chapters")
     public ChapterResponse chapterByManga(@RequestParam String mangaId){
 
-        return mangaService.userMangaOption(mangaId);
+        return mangaService.chaptersByMangaOption(mangaId);
     }
 
     @GetMapping("/pages")
-    public Page allPagesByChapterId(@RequestParam String chapterId){
+    public List<String> allPagesByChapterId(@RequestParam String chapterId){
 
         return mangaService.pagesUrls(chapterId);
     }

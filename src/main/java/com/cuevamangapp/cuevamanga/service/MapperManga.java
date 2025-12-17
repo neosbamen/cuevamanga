@@ -1,7 +1,6 @@
 package com.cuevamangapp.cuevamanga.service;
 
 import com.cuevamangapp.cuevamanga.models.*;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -16,15 +15,14 @@ public class MapperManga {
     public MapperManga() {
         this.mangaDTOList = new ArrayList<>();
     }
-    public List<MangaDTO> mangaDTOMap(MangaResponse mangas) {
+    public List<MangaDTO> toDTO(MangaResponse mangas) {
 
-        MangaDTO manga = new MangaDTO();
         mangas.getData().forEach(m-> {
-
+            MangaDTO manga = new MangaDTO();
             manga.setId(m.getId());
             manga.setAttributes(m.getAttributes());
             Optional<Relations> coverArt = m.getRelationships().stream().filter(r -> r.getType().equals("cover_art")).findFirst();
-            manga.setRelationships(coverArt.get());
+            coverArt.ifPresent(manga::setRelationships);
             mangaDTOList.add(manga);
         });
         return mangaDTOList;
