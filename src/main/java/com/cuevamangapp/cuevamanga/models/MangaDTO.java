@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-public class Chapter {
+@NoArgsConstructor
+@AllArgsConstructor
+public class MangaDTO {
+
     private String id;
-    private ChapterAttributes attributes;
+    private MangaAttributes attributes;
+    private Relations relationships;
 }

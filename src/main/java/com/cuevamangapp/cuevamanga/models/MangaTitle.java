@@ -17,5 +17,7 @@ public class MangaTitle {
     @JsonProperty("es-la")
     private String esLa;
     private String ja;
+    @JsonProperty("ja-ro")
+    private String jaRo;
 
 }

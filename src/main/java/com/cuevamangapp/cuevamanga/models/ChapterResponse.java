@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
+import java.util.List;
+
 @NoArgsConstructor
 @Data
-public class Chapter {
-    private String id;
-    private ChapterAttributes attributes;
+@AllArgsConstructor
+public class ChapterResponse {
+
+    private List<Chapter> data;
 }
