@@ -1,9 +1,7 @@
 package com.cuevamangapp.cuevamanga.controller;
 
 import com.cuevamangapp.cuevamanga.models.User;
-import com.cuevamangapp.cuevamanga.models.UserDTO;
 import com.cuevamangapp.cuevamanga.service.UserService;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +16,7 @@ public class UserController {
 
     //Paso los atributos por pathParam, pero podria ser por requestBody o pathVariable. Revisar que conviene mas.
     @PostMapping("/validate")
-    public ResponseEntity<Boolean> validateUserC(@RequestBody User user){
+    public ResponseEntity<User> validateUserC(@RequestBody User user){
 
         return userService.validateUser(user.getEmail(), user.getPassword());
     }

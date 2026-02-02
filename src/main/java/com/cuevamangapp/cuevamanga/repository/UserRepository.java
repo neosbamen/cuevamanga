@@ -9,7 +9,5 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public interface UserRepository extends JpaRepository<User,Long> {
-
-    //metodo que valida que un usuario exista en la DB buscandolo por email y password
-   boolean existsByEmailAndPassword(String email, String password);
+   Optional<User> findByEmail(String email);
 }

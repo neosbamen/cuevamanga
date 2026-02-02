@@ -1,4 +1,4 @@
-package com.cuevamangapp.cuevamanga.models;
+package com.cuevamangapp.cuevamanga.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,7 @@
 package com.cuevamangapp.cuevamanga.controller;
 
-import com.cuevamangapp.cuevamanga.models.*;
+import com.cuevamangapp.cuevamanga.dtos.ChapterResponse;
+import com.cuevamangapp.cuevamanga.dtos.MangaDTO;
 import com.cuevamangapp.cuevamanga.service.MangaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +44,11 @@ public class MangaController {
     public List<MangaDTO> mangaTagComedy(){
 
         return mangaService.mangaTagComedy();
+    }
+
+    @GetMapping("/{id}")
+    public MangaDTO getMangaById(@PathVariable String id){
+        return mangaService.findMangaById(id);
     }
 
     @GetMapping("/by-name={part}")

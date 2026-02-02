@@ -1,5 +1,7 @@
-package com.cuevamangapp.cuevamanga.models;
+package com.cuevamangapp.cuevamanga.dtos;
 
+
+import com.cuevamangapp.cuevamanga.models.Manga;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
-public class ChapterResponse {
+public class MangaResponse {
 
-    private List<Chapter> data;
+    private List<Manga> data;
+
 }

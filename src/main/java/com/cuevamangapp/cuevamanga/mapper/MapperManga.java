@@ -1,5 +1,7 @@
-package com.cuevamangapp.cuevamanga.service;
+package com.cuevamangapp.cuevamanga.mapper;
 
+import com.cuevamangapp.cuevamanga.dtos.MangaDTO;
+import com.cuevamangapp.cuevamanga.dtos.MangaResponse;
 import com.cuevamangapp.cuevamanga.models.*;
 import org.springframework.stereotype.Component;
 

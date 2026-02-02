@@ -1,6 +1,5 @@
-package com.cuevamangapp.cuevamanga.models;
+package com.cuevamangapp.cuevamanga.dtos;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
